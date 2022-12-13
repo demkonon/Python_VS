@@ -1,5 +1,6 @@
 from datetime import datetime
 import time
+import os
 def time_couner_ny(et,cor):
     while et > cor:
         time.sleep(1)
@@ -23,16 +24,18 @@ class Timer_self:
     @e_time.setter
     def e_time(self,et):
         self.__end_time = et
-    
-    def __str__(self):
+
+    def res(self):
         cor = datetime.today()
         while self.__end_time > cor:
             time.sleep(1)
             cor = datetime.today()
-            print(self.__end_time - cor)
-        return 
+            print("\b"*100, self.__end_time - cor, end = '')
+            # реализация удаления предыдущего вывода
+            os.sys.stdout.flush()
+        
 
 
 cor = Timer_self()
 cor.e_time = datetime(2022, 12, 31)
-print(cor)
+print(cor.res)
