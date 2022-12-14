@@ -20,7 +20,6 @@ class Timer_self:
     @property
     def e_time(self):
         return self.__end_time
-
     @e_time.setter
     def e_time(self,et):
         self.__end_time = et
@@ -33,21 +32,19 @@ class Timer_self:
             print("\b"*100, self.__end_time - cor, end = '')
             # реализация удаления предыдущего вывода
             os.sys.stdout.flush()
-
     def res_another(self):
         difference =  self.__end_time - datetime.today()
         sec_days = difference.days * 86400
         sec_days += difference.seconds
-        while sec_days > 0:
+        while sec_days >= 0:
             time.sleep(1)
-            diff = sec_days - datetime.today()
-            
-            sec_days -= cor_sec
+            diff =  self.__end_time - datetime.today()
+            sec_curr = diff.days * 86400
+            sec_curr += diff.seconds
+            sec_days -= (sec_days - sec_curr)
             print("\b"*100, sec_days, end = '')
-
-
-
+            os.sys.stdout.flush()
 cor = Timer_self()
-cor.e_time = datetime(2022, 12, 31)
-# print(cor.res)
-print(cor.res_another())
+cor.e_time = datetime(2023, 12, 31)
+print(cor.res)
+# print(cor.res_another())
