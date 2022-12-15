@@ -14,13 +14,22 @@
 # 3. В какой день недели Вы родились? Перечислить все свои ДР,
 # пришедшиеся на тот же день недели.
 
-class Year_self():
+class Year_self:
 
-    def __init__(self, yr_u, yr_v, td, wk):
+    def __init__(self):
+        self.__sum_days = None
+
+    def day_in_year(self, yr_u, yr_v, td, wk):
         self.__year_u = yr_u
         self._year_v = yr_v
         self.__today_m = td
         self.__week_m = wk
+        enter_date = input('day/month/year:').split('/')
+        if enter_date[2] % 4 != 0 and enter_date[2] % 100 == 0:
+            for m in self.__year_u.values():
+                for i in m:
+                    self.__sum_days += i[0]
+        return self.__sum_days
     
 
 
@@ -37,7 +46,8 @@ class Year_self():
 
 
 
-y_s = Year_self(year_us, today_day)
+y_s = Year_self()
+print(y_s.day_in_year(year_us, year_v, today_m, week_m))
 
 year_us = {
     'January': [31, 1],
@@ -76,4 +86,4 @@ week_m = {
     6: 'Saturday',
     7: 'Sunday'
 }
-today_m = ['December','tuesday', 13, 2022]
+today_m = [12,'tuesday', 13, 2022]
