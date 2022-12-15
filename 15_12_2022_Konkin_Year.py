@@ -14,7 +14,14 @@
 # 3. В какой день недели Вы родились? Перечислить все свои ДР,
 # пришедшиеся на тот же день недели.
 
-class Year_self(dict):
+class Year_self():
+
+    def __init__(self, yr_u, yr_v, td, wk):
+        self.__year_u = yr_u
+        self._year_v = yr_v
+        self.__today_m = td
+        self.__week_m = wk
+    
 
 
 
@@ -28,19 +35,45 @@ class Year_self(dict):
 
 
 
+
+
+y_s = Year_self(year_us, today_day)
 
 year_us = {
-    'January': 31,
-    'February': 28,
-    'March': 31,
-    'April': 30,
-    'May': 31,
-    'June': 30,
-    'July': 31,
-    'August': 31,
-    'September': 30,
-    'October': 31,
-    'November': 30,
-    'December': 31 
+    'January': [31, 1],
+    'February': [28, 2],
+    'March': [31, 3],
+    'April': [30, 4],
+    'May': [31, 5],
+    'June': [30, 6],
+    'July': [31, 7],
+    'August': [31, 8],
+    'September': [30, 9],
+    'October': [31, 10],
+    'November': [30, 11],
+    'December': [31, 12] 
 }
-today_day = [13, 'December', 2022]
+year_v = {
+    'January': [31, 1],
+    'February': [29, 2],
+    'March': [31, 3],
+    'April': [30, 4],
+    'May': [31, 5],
+    'June': [30, 6],
+    'July': [31, 7],
+    'August': [31, 8],
+    'September': [30, 9],
+    'October': [31, 10],
+    'November': [30, 11],
+    'December': [31, 12] 
+}
+week_m = {
+    1: 'Monday',
+    2: 'Tuesday',
+    3: 'Wensday',
+    4: 'Thursday',
+    5: 'Friday',
+    6: 'Saturday',
+    7: 'Sunday'
+}
+today_m = ['December','tuesday', 13, 2022]
