@@ -17,19 +17,72 @@
 class Year_self:
 
     def __init__(self):
-        self.__sum_days = None
-
-    def day_in_year(self, yr_u, yr_v, td, wk):
+        self.__sum_days = 0
+        self.__year_u = None
+        self._year_leap = None
+        self.__today_d = None
+        self.__week_m = None
+        self.name_year = None
+        self.enter_date = None
+    
+    @property
+    def usualy_year(self):
+        return self.__year_u
+    @usualy_year.setter
+    def usualy_year(self, yr_u):
         self.__year_u = yr_u
-        self._year_v = yr_v
-        self.__today_m = td
-        self.__week_m = wk
-        enter_date = input('day/month/year:').split('/')
-        if enter_date[2] % 4 != 0 and enter_date[2] % 100 == 0:
+
+    @property
+    def leap_year(self):
+        return  self._year_leap
+    @leap_year.setter
+    def leap_year(self, leap):
+        self._year_leap = leap
+
+    @property
+    def today_day(self):
+        return self.__today_d
+    @today_day.setter
+    def today_day(self, td):
+        self.__today_d = td
+
+    @property
+    def weeks_day(self):
+        return self.__week_m
+    @weeks_day.setter
+    def weeks_day(self, wd):
+        self.__week_m = wd
+
+    def days_in_this_year(self): #how many days in this year and deside what year
+        self.enter_date = input('day/month/year:').split('/')
+        if int(self.enter_date[2]) % 4 != 0: 
             for m in self.__year_u.values():
-                for i in m:
-                    self.__sum_days += i[0]
+                self.__sum_days += m[0]
+            self.name_year = self.__year_u
+            print('Usually year')
+        else:
+            for m in self._year_leap.values():
+                self.__sum_days += m[0]
+            self.name_year = self._year_leap
+            print('leap year')
         return self.__sum_days
+
+    def in_which_day_closes_the_new_year(self):
+        index = 0
+        if int(self.enter_date[2]) == self.__today_d[3] and int(self.enter_date[1] == self.__today_d[0]):
+            index = self.__today_d[0]
+            print(self.__today_d[0])
+        #     days = 0
+        #     for m in self.name_year.values():
+        #         if index == m[1]:
+        #             days = int(m[0])
+        # return days
+
+   
+
+
+
+
     
 
 
@@ -37,18 +90,7 @@ class Year_self:
 
 
 
-
-
-
-
-
-
-
-
-
 y_s = Year_self()
-print(y_s.day_in_year(year_us, year_v, today_m, week_m))
-
 year_us = {
     'January': [31, 1],
     'February': [28, 2],
@@ -63,7 +105,7 @@ year_us = {
     'November': [30, 11],
     'December': [31, 12] 
 }
-year_v = {
+year_leap = {
     'January': [31, 1],
     'February': [29, 2],
     'March': [31, 3],
@@ -77,6 +119,14 @@ year_v = {
     'November': [30, 11],
     'December': [31, 12] 
 }
+today_m = [12,'Tuesday', 13, 2022]
+
+y_s.usualy_year = year_us
+y_s.leap_year = year_leap
+y_s.today_day = today_m
+print(y_s.days_in_this_year())
+print(y_s.in_which_day_closes_the_new_year())
+
 week_m = {
     1: 'Monday',
     2: 'Tuesday',
@@ -86,4 +136,3 @@ week_m = {
     6: 'Saturday',
     7: 'Sunday'
 }
-today_m = [12,'tuesday', 13, 2022]
