@@ -17,13 +17,13 @@
 class Year_self:
 
     def __init__(self):
-        self.__sum_days = 0
+        
         self.__year_u = None
         self._year_leap = None
         self.__today_d = None
         self.__week_m = None
         self.name_year = None
-        self.enter_date = None
+        self.dev_galo_days = 0
     
     @property
     def usualy_year(self):
@@ -53,41 +53,61 @@ class Year_self:
     def weeks_day(self, wd):
         self.__week_m = wd
 
-    def days_in_this_year(self): #how many days in this year and deside what year
-        self.enter_date = input('day/month/year:').split('/')
-        if int(self.enter_date[2]) % 4 != 0: 
+    def days_in_this_year(self, year): #how many days in this year and deside what year - warm-up ;-)
+        self.enter_date = year
+        sum_days = 0
+        if int(self.enter_date) % 4 != 0: 
             for m in self.__year_u.values():
-                self.__sum_days += m[0]
+                sum_days += m[0]
             self.name_year = self.__year_u
             print('Usually year')
         else:
             for m in self._year_leap.values():
-                self.__sum_days += m[0]
+                sum_days += m[0]
             self.name_year = self._year_leap
             print('leap year')
-        return self.__sum_days
+        return sum_days
 
-    def in_which_day_closes_the_new_year(self):
+    def in_which_day_closest_the_new_year(self):
         index = 0
-        if int(self.enter_date[2]) == self.__today_d[3] and int(self.enter_date[1] == self.__today_d[0]):
+        days = 0
+        dop = 0
+        user_year = self.enter_date
+        if user_year == self.__today_d[3]:
             index = self.__today_d[0]
-            print(self.__today_d[0])
-        #     days = 0
-        #     for m in self.name_year.values():
-        #         if index == m[1]:
-        #             days = int(m[0])
-        # return days
+            for m in self.name_year.values():
+                if index == m[1]:
+                    days = int(m[0])
+                    for key, val in self.__week_m.items():
+                        if self.__today_d[1] == val:
+                            dop = key
+                            self.dev_galo_days = ((days - self.__today_d[2]) % 7) + dop + 1
+                        if self.dev_galo_days == key:
+                            galo_days = val                  
+        return "%s%s" %('Closest New Year - ',galo_days)
 
-   
+    def which_day_some_new_year(self, user_year):
+        counter = self.dev_galo_days
+        day_holiday = ''
+        rayd = user_year - 2022
+        for year in range(rayd+1):
+            if year != 0:
+                year += 2022
+                if year % 4 != 0:
+                    ostatok = 365 % 7
+                elif year % 4 == 0:
+                    ostatok = 366 % 7
+                counter += ostatok
+                if counter <= 7:
+                        counter = counter
+                elif counter > 7:
+                        counter = counter % 7  
+        for key, val in self.__week_m.items():
+            if key == counter:
+                day_holiday = val
+        return "%s%s%i" %(day_holiday, ' - the Day of new year this Year - ', user_year)
 
-
-
-
-    
-
-
-
-
+        
 
 
 y_s = Year_self()
@@ -119,14 +139,6 @@ year_leap = {
     'November': [30, 11],
     'December': [31, 12] 
 }
-today_m = [12,'Tuesday', 13, 2022]
-
-y_s.usualy_year = year_us
-y_s.leap_year = year_leap
-y_s.today_day = today_m
-print(y_s.days_in_this_year())
-print(y_s.in_which_day_closes_the_new_year())
-
 week_m = {
     1: 'Monday',
     2: 'Tuesday',
@@ -136,3 +148,17 @@ week_m = {
     6: 'Saturday',
     7: 'Sunday'
 }
+today_m = [12,'Tuesday', 13, 2022]
+
+y_s.usualy_year = year_us
+y_s.leap_year = year_leap
+y_s.today_day = today_m
+y_s.weeks_day = week_m
+print(y_s.days_in_this_year(2022))
+print(y_s.in_which_day_closest_the_new_year())
+
+for i in range(50):
+    print(y_s.which_day_some_new_year(2023+i))
+    
+
+
