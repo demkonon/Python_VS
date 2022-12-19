@@ -179,7 +179,7 @@ print(y_s.days_in_this_year(2022))
 print()
 print(y_s.in_which_day_closest_the_new_year())
 print()
-for i in range(2):
+for i in range(10):
     print(y_s.which_day_some_new_year(2023+i))
 print()
 for i in range(41):
