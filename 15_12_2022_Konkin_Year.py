@@ -106,6 +106,27 @@ class Year_self:
             if key == counter:
                 day_holiday = val
         return "%s%s%i" %(day_holiday, ' - the Day of new year this Year - ', user_year)
+    
+    def day_the_birthday(self, user_year):
+        counter = 2
+        day_holiday = ''
+        rayd = user_year - 1981
+        for year in range(rayd+1):
+            if year != 0:
+                year += 1981
+                if year % 4 != 0:
+                    ostatok = 365 % 7
+                elif year % 4 == 0:
+                    ostatok = 366 % 7
+                counter += ostatok
+                if counter <= 7:
+                        counter = counter
+                elif counter > 7:
+                        counter = counter % 7  
+        for key, val in self.__week_m.items():
+            if key == counter:
+                day_holiday = val
+        return "%s%s%i" %(day_holiday, ' - the Day of new year this Year - ', user_year)
 
         
 
@@ -157,8 +178,11 @@ y_s.weeks_day = week_m
 print(y_s.days_in_this_year(2022))
 print(y_s.in_which_day_closest_the_new_year())
 
-for i in range(50):
+for i in range(2):
     print(y_s.which_day_some_new_year(2023+i))
+
+for i in range(41):
+    print(y_s.day_the_birthday(1981+i))
     
 
 
