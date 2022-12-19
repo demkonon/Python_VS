@@ -84,7 +84,7 @@ class Year_self:
                             self.dev_galo_days = ((days - self.__today_d[2]) % 7) + dop + 1
                         if self.dev_galo_days == key:
                             galo_days = val                  
-        return "%s%s" %('Closest New Year - ',galo_days)
+        return "%s%s" %('Closest New Year - ', galo_days)
 
     def which_day_some_new_year(self, user_year):
         counter = self.dev_galo_days
@@ -176,11 +176,12 @@ y_s.leap_year = year_leap
 y_s.today_day = today_m
 y_s.weeks_day = week_m
 print(y_s.days_in_this_year(2022))
+print()
 print(y_s.in_which_day_closest_the_new_year())
-
+print()
 for i in range(2):
     print(y_s.which_day_some_new_year(2023+i))
-
+print()
 for i in range(41):
     print(y_s.day_the_birthday(1981+i))
     
