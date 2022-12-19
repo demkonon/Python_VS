@@ -126,7 +126,7 @@ class Year_self:
         for key, val in self.__week_m.items():
             if key == counter:
                 day_holiday = val
-        return "%s%s%i" %(day_holiday, ' - the Day of new year this Year - ', user_year)
+        return "%s%s%i" %(day_holiday, ' - the Day of My Birthdat - ', user_year)
 
         
 
